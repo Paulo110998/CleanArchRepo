@@ -48,13 +48,21 @@ Este é um projeto demonstrativo em que utilizo a **Clean Architecture** com ASP
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
-- **ASP.NET Core** 
+## 🛠️ Tecnologias, Arquitetura e Design:
+- **.NET 8**
+- **ASP.NET Core**
 - **Entity Framework Core** com suporte ao **SQL Server**
-- **AutoMapper** para mapeamento de objetos.
-- **MediatR** para implementação de CQRS.
+- **AutoMapper** para mapeamento de objetos
+- **MediatR** para implementação de CQRS
+- **Arquitetura Limpa**
+- **Código Limpo**
+- **DDD (Domain-Driven Design)**
+- **Design Patterns**
+- **Princípios SOLID**
+- **Injeção de Dependências**
+- **Inversão de Controle**
+- **Repository Pattern**
 
----
 
 ## 📦 Pacotes NuGet
 - **Microsoft.EntityFrameworkCore.Design**
