@@ -2,9 +2,12 @@
 using CleanArchMvc.Application.Mappings;
 using CleanArchMvc.Application.Services;
 using CleanArchMvc.Data.Context;
+using CleanArchMvc.Domain.Account;
 using CleanArchMvc.Domain.Interfaces;
+using CleanArchMvc.Infra.Data.Identity;
 using CleanArchMvc.Infra.Data.Repositories;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,9 +26,21 @@ public static class DependencyInjection
         // Provedor de banco de dados e conexão
         options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
         b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+               
+        // Adicionado referência ao serviço do Identity
+        services.AddIdentity<ApplicationUser, IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
 
-        // MigrationAssembly -> Define o lugar onde as migrações estão mantidas.
+        // Configurando Cookie do Aplicativo
+        services.ConfigureApplicationCookie(options =>
+        options.AccessDeniedPath = "/Account/Login");
+        
+        // Serviços de Autenticação e Role
+        services.AddScoped<IAuthenticate, AuthenticateService>();
+        services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
 
+       
         // Adicionando referência do repositório category
         services.AddScoped<ICategoryRepository, CategoryRepository>();
 
