@@ -1,9 +1,11 @@
 ﻿using CleanArchMvc.Application.DTOs;
 using CleanArchMvc.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchMvc.WebUI.Controllers;
 
+[Authorize]
 public class CategoriesController : Controller
 {
     // Injetando a interface do serviço
